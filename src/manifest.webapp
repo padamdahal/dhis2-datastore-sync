@@ -1,0 +1,19 @@
+{
+  "launch_path": "index.html",
+  "default_locale": "en",
+  "activities": {
+    "dhis": { "href": "index.html" }
+  },
+  "type": "app",
+  "name": "Datastore Sychronizer",
+  "version": "1.0.0",
+  "description": "Synchronizes datastore from selected master DHIS2 instance",
+  "developer": {
+    "name": "Padam",
+    "email": "padam.dahal@giz.de",
+    "url": "",
+    "company": ""
+  },
+  "icons": { "48": "img/icon.png" },
+  "manifest_generated_at": ""
+}
