@@ -5,9 +5,9 @@
     "dhis": { "href": "index.html" }
   },
   "type": "app",
-  "name": "Datastore Sychronizer",
+  "name": "Datastore Sync",
   "version": "1.0.0",
-  "description": "Synchronizes datastore from selected master DHIS2 instance",
+  "description": "Datastore Sync",
   "developer": {
     "name": "Padam",
     "email": "padam.dahal@giz.de",
