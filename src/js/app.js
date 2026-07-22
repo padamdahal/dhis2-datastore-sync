@@ -39,14 +39,12 @@ async function createOrUpdateLocal(namespace,key,value){
       url:url,
       method:"GET"
     });
-
     await $.ajax({
       url:url,
       method:"PUT",
       data: JSON.stringify(value),
       contentType:"application/json"
     });
-
     log("UPDATED " + namespace + "/" + key);
 
   }catch(e){
@@ -57,46 +55,31 @@ async function createOrUpdateLocal(namespace,key,value){
       data: JSON.stringify(value),
       contentType:"application/json"
     });
-
     log("CREATED " + namespace + "/" + key);
   }
 }
 
 async function syncAll(){
-
   $("#log").text("");
-
   const masterUrl = $("#masterUrl").val().replace(/\/$/,'');
   const auth = authHeader(
     $("#username").val(),
     $("#password").val()
   );
 
+  const excludeNamespaces = ['capture','METADATASTORE','datastorePush','metadataPush','analytics'];
   const namespaces = await getNamespaces(masterUrl, auth);
-
-  for(const namespace of namespaces){
-
+ 
+  for(const namespace of namespaces){ 
     log("Namespace: " + namespace);
-
-    const keys = await getKeys(masterUrl, auth, namespace);
-
-    for(const key of keys){
-
-      const value = await getValue(
-        masterUrl,
-        auth,
-        namespace,
-        key
-      );
-
-      await createOrUpdateLocal(
-        namespace,
-        key,
-        value
-      );
+    if(!excludeNamespaces.includes(namespace)){
+        const keys = await getKeys(masterUrl, auth, namespace);
+        for(const key of keys){
+          const value = await getValue(masterUrl, auth, namespace, key);
+          await createOrUpdateLocal(namespace, key, value);
+        }
     }
   }
-
   log("DONE");
 }
 
