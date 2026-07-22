@@ -78,6 +78,8 @@ async function syncAll(){
           const value = await getValue(masterUrl, auth, namespace, key);
           await createOrUpdateLocal(namespace, key, value);
         }
+    }else{
+      log("SKIPPED");
     }
   }
   log("DONE");
